@@ -1,0 +1,70 @@
+id: software-delivery
+name: Software Delivery Harness
+description: Turn a rough software task into a hardened implementation prompt and audit loop.
+version: 0.1.0
+maturity: prompt
+stages:
+  - id: intake-interview
+    name: Intake Interview
+    agent: agents/intake-interviewer.md
+    description: Gather task details, repo context, constraints, branch strategy, tests, and acceptance criteria.
+    outputs:
+      - 01-task-context.md
+    approval: none
+  - id: cto-planner
+    name: CTO Planner
+    agent: agents/cto-planner.md
+    description: Convert the task context into a precise implementation brief.
+    inputs:
+      - 01-task-context.md
+    outputs:
+      - 02-implementation-brief.md
+    approval: none
+  - id: prompt-redteam
+    name: Prompt Red Team
+    agent: agents/prompt-redteam.md
+    description: Critique the implementation brief before it is sent to a coding agent.
+    inputs:
+      - 02-implementation-brief.md
+    outputs:
+      - 03-redteam-report.md
+    approval: none
+  - id: cto-rewrite
+    name: CTO Rewrite
+    agent: agents/cto-rewriter.md
+    description: Incorporate red-team findings and produce a final implementation prompt.
+    inputs:
+      - 02-implementation-brief.md
+      - 03-redteam-report.md
+    outputs:
+      - 04-final-implementation-prompt.md
+    approval: recommended
+  - id: export-prompt
+    name: Export Implementation Prompt
+    description: Export the final prompt for Claude Code, Codex, Cursor, or another coding agent.
+    inputs:
+      - 04-final-implementation-prompt.md
+    outputs:
+      - 05-exported-prompt.md
+    approval: none
+  - id: code-audit
+    name: Code Audit
+    agent: agents/code-auditor.md
+    description: Review the git diff, test output, and implementation summary against the original task.
+    inputs:
+      - 04-final-implementation-prompt.md
+      - git-diff.md
+      - test-output.md
+      - implementation-summary.md
+    outputs:
+      - 06-audit-verdict.md
+    approval: none
+  - id: final-verdict
+    name: Final Verdict
+    agent: agents/final-verdict.md
+    description: Decide whether to accept, accept with risks, revise, or escalate.
+    inputs:
+      - 06-audit-verdict.md
+    outputs:
+      - 07-final-verdict.md
+    approval: required

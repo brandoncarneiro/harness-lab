@@ -1,0 +1,61 @@
+id: harness-creator
+name: Harness Creator
+description: A meta-harness that interviews a user and creates a new agent harness from the conversation.
+version: 0.1.0
+maturity: prompt
+stages:
+  - id: intake-interview
+    name: Intake Interview
+    agent: agents/intake-interviewer.md
+    description: Interview the user about the manual workflow, desired outcome, tools, risks, outputs, and definition of done.
+    outputs:
+      - harness-design-brief.md
+    approval: none
+  - id: harness-architect
+    name: Harness Architect
+    agent: agents/harness-architect.md
+    description: Convert the design brief into a structured harness workflow with stages, inputs, outputs, agent roles, approval gates, and artifacts.
+    inputs:
+      - harness-design-brief.md
+    outputs:
+      - harness.yaml
+    approval: recommended
+  - id: harness-redteam
+    name: Harness Red Team
+    agent: agents/harness-redteam.md
+    description: Critique the proposed harness for ambiguity, weak outputs, missing approval gates, unsafe permissions, and unnecessary complexity.
+    inputs:
+      - harness.yaml
+    outputs:
+      - redteam-report.md
+    approval: none
+  - id: harness-generator
+    name: Harness Generator
+    agent: agents/harness-generator.md
+    description: Generate the harness files, agent prompts, examples, and README from the approved design.
+    inputs:
+      - harness.yaml
+      - redteam-report.md
+    outputs:
+      - generated-harness-files.md
+    approval: required
+  - id: harness-audit
+    name: Harness Audit
+    agent: agents/harness-auditor.md
+    description: Review the generated harness against the original goal and decide whether it is usable.
+    inputs:
+      - harness-design-brief.md
+      - harness.yaml
+      - generated-harness-files.md
+    outputs:
+      - audit-verdict.md
+    approval: none
+  - id: improvement-plan
+    name: Improvement Plan
+    agent: agents/improvement-planner.md
+    description: Convert audit findings and user feedback into specific improvements for the harness.
+    inputs:
+      - audit-verdict.md
+    outputs:
+      - harness-improvement-plan.md
+    approval: recommended

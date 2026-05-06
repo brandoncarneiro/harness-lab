@@ -1,0 +1,34 @@
+{
+  "name": "harness-lab",
+  "version": "0.1.0",
+  "description": "Create, test, and improve agent harnesses through conversation.",
+  "type": "module",
+  "bin": {
+    "harness-lab": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "harness": "tsx src/cli.ts",
+    "list": "tsx src/cli.ts list",
+    "new": "tsx src/cli.ts new harness-creator"
+  },
+  "keywords": [
+    "agents",
+    "agent-harness",
+    "harness",
+    "prompt-engineering",
+    "ai-workflows",
+    "llm"
+  ],
+  "author": "Brandon / sommbc",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "commander": "^12.0.0"
+  }
+}
