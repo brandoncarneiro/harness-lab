@@ -7,7 +7,7 @@ Harness Lab uses a simple YAML spec for v0.1.
 ```yaml
 id: harness-creator
 name: Harness Creator
-description: A meta-harness that interviews a user and creates a new agent harness from the conversation.
+description: A meta-harness that guides a manual interview and turns the answers into an inspectable harness definition.
 version: 0.1.0
 maturity: prompt
 stages:

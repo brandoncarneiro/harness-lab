@@ -4,7 +4,7 @@ This repository is an open-source project called Harness Lab.
 
 ## Project purpose
 
-Harness Lab helps users create, test, and improve agent harnesses through conversation.
+Harness Lab helps users create inspectable prompt harnesses and local markdown run folders.
 
 A harness is a structured workflow around one or more AI agents. It includes stages, prompts, inputs, outputs, artifacts, approval gates, audits, and improvement loops.
 
@@ -37,7 +37,7 @@ v0.1 is intentionally small:
 - `src/` contains the CLI and core utilities.
 - `harnesses/` contains reusable harness definitions.
 - `docs/` contains concepts and design docs.
-- `runs/` is ignored and used for local run artifacts.
+- `runs/` is ignored and used for local generated run artifacts.
 
 ## Definition of done
 

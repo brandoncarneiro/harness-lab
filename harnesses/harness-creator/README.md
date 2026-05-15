@@ -2,7 +2,7 @@
 
 The Harness Creator is the first meta-harness in Harness Lab.
 
-Its job is to help a user create a new harness through conversation.
+Its job is to guide a manual interview that produces a new harness definition.
 
 It does not start by asking the user to write YAML, pick a framework, or define nodes and edges. It starts by understanding the work the user is already doing manually.
 

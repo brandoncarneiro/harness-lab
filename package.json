@@ -1,17 +1,29 @@
 {
   "name": "harness-lab",
   "version": "0.1.0",
-  "description": "Create, test, and improve agent harnesses through conversation.",
+  "description": "Local CLI for creating inspectable prompt-harness run folders from YAML definitions.",
   "type": "module",
+  "main": "dist/cli.js",
   "bin": {
     "harness-lab": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
-    "harness": "tsx src/cli.ts",
-    "list": "tsx src/cli.ts list",
-    "new": "tsx src/cli.ts new harness-creator"
+    "dev": "tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "node --test --import tsx tests/*.test.ts",
+    "prepack": "npm run build"
   },
+  "files": [
+    "dist",
+    "docs",
+    "examples",
+    "harnesses",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "SECURITY.md"
+  ],
   "keywords": [
     "agents",
     "agent-harness",
@@ -20,15 +32,27 @@
     "ai-workflows",
     "llm"
   ],
-  "author": "Brandon / sommbc",
+  "author": "Brandon Carneiro",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sommbc/harness-lab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sommbc/harness-lab/issues"
+  },
+  "homepage": "https://github.com/sommbc/harness-lab#readme",
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.11.30",
     "tsx": "^4.7.1",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "js-yaml": "^4.1.0"
   }
 }
